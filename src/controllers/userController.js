@@ -1,5 +1,8 @@
 import { db } from '../config/firebase.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.FIREBASE_CONFIG;
 
 class UsersController {
 
@@ -49,6 +52,52 @@ class UsersController {
         }
     }
 
+     static async loginUser(req, res) {
+    console.log('Chegou na rota de login');
+    try {
+      const { email, passaword } = req.body;
+
+      if (!email || !passaword) {
+        return res.status(400).json({ erro: 'Email e senha são obrigatórios.' });
+      }
+
+      const snapshot = await db.collection('users').where('email', '==', email).get();
+      if (snapshot.empty) {
+        return res.status(401).json({ erro: 'Credenciais inválidas.' });
+      }
+
+      const doc = snapshot.docs[0];
+      const usuario = doc.data();
+
+      const senhaValida = await bcrypt.compare(passaword, usuario.passaword);
+      if (!senhaValida) {
+        return res.status(401).json({ erro: 'Credenciais inválidas.' });
+      }
+
+      const token = jwt.sign(
+        { id: doc.id, nome: usuario.nome, email: usuario.email, tipo: usuario.tipo },
+        JWT_SECRET,
+        { expiresIn: '24h' }
+      );
+
+      res.json({
+        mensagem: 'Login realizado com sucesso!',
+        token,
+        usuario: {
+          id: doc.id,
+          nome: usuario.nome,
+          email: usuario.email,
+          tipo: usuario.tipo
+        }
+      });
+    } catch (err) {
+      console.error('Erro ao fazer login:', err);
+      res.status(500).json({ erro: 'Erro ao fazer login.', detalhes: err.message });
+    }
+  }
+
 }
+
+
 
 export default UsersController;
