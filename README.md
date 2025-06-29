@@ -204,8 +204,7 @@ Se precisar de exemplos de resposta ou detalhes de autenticação, só pedir!- *
 - **Exemplo de documento:**
     
     ```json
-    json
-    CopyEdit
+    
     {
       "userId": "id_do_usuario",
       "name": "Unidade de Saúde X",
@@ -245,8 +244,7 @@ Se precisar de exemplos de resposta ou detalhes de autenticação, só pedir!- *
 ### 🧭 Resumo Visual
 
 ```
-yaml
-CopyEdit
+
 users (coleção)
  └── {userId} (documento)
       ├── name: string
