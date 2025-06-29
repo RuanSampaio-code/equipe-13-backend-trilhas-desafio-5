@@ -2,6 +2,38 @@ import express from "express";
 import UsersController from "../controllers/userController.js";
 
 const router = express.Router();
+
+
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Realiza login do usuário
+ *     tags: [Usuários]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: joao@email.com
+ *               password:
+ *                 type: string
+ *                 example: minhaSenhaSegura
+ *     responses:
+ *       200:
+ *         description: Login realizado com sucesso
+ *       401:
+ *         description: Credenciais inválidas
+ */
+router.post("/login", UsersController.loginUser);
+
+
+
 /**
  * @swagger
  * /users:
