@@ -1,6 +1,6 @@
 # equipe-13-backend-trilhas-desafio-5
 
-
+Esta aplicação é uma API backend desenvolvida em Node.js para cadastro e autenticação de usuários, além de gerenciamento de unidades de saúde favoritas. Utilizando Firebase Firestore como banco de dados, ela permite que usuários se registrem, façam login com autenticação JWT e salvem ou consultem unidades de saúde favoritas. A API também oferece documentação interativa via Swagger, facilitando a integração com aplicações frontend.
 ---
 
 ## a) Instruções de Instalação
