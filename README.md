@@ -179,8 +179,6 @@ Se precisar de exemplos de resposta ou detalhes de autenticação, só pedir!- *
 - **Exemplo de documento:**
     
     ```json
-    json
-    CopyEdit
     {
       "name": "João Silva",
       "email": "joao@email.com",
