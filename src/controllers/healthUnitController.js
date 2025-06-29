@@ -62,6 +62,22 @@ class HealthUnitController {
             res.status(500).json({ error: 'Erro ao buscar unidades favoritas' });
         }
     }
+
+    //todas as unidades de saúde
+    static async getHealthUnits(req, res) {
+        try {
+            const snapshot = await db.collection('favorites').get();
+            const healthUnits = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
+            res.status(200).json(healthUnits);
+        } catch (error) {
+            console.error('Erro ao buscar unidades de saúde:', error);
+            res.status(500).json({ error: 'Erro ao buscar unidades de saúde' });
+        }
+    }
 }
 
 export default HealthUnitController;

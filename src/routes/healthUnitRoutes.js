@@ -67,7 +67,7 @@ router.post("/favorites", validateFavoriteUnit, HealthUnitController.addFavorite
  * @swagger
  * /favorites:
  *   get:
- *     summary: Lista todas as unidades favoritas
+ *     summary: Lista todas as unidades favoritas por id de usuario
  *     tags: [Unidades Favoritas]
  *     parameters:
  *       - in: query
@@ -80,5 +80,16 @@ router.post("/favorites", validateFavoriteUnit, HealthUnitController.addFavorite
  *         description: Lista de unidades favoritas
  */
 router.get("/favorites", HealthUnitController.getFavorites);
+/**
+ * @swagger
+ * /health-units:
+ *   get:
+ *     summary: Lista todas as unidades de saúde
+ *     tags: [Unidades de Saúde]
+ *     responses:
+ *       200:
+ *         description: Lista de unidades de saúde
+ */
+router.get("/health-units", HealthUnitController.getHealthUnits);
 
 export default router;
