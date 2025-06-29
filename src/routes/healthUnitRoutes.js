@@ -24,37 +24,64 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             required:
+ *               - id
  *               - userId
  *               - name
  *               - address
  *               - longitude
  *               - latitude
+ *               - types
+ *               - addedAt
  *             properties:
+ *               id:
+ *                 type: string
+ *                 description: "ID do local (ex: do Google Places)"
+
+ *                 example: "ChIJN1t_tDeuEmsRUsoyG83frY4"
  *               userId:
  *                 type: string
  *                 description: ID do usuário
+ *                 example: "abc123"
  *               name:
  *                 type: string
- *                 description: Nome da unidade de saúde
+ *                 description: Nome do estabelecimento
+ *                 example: "Hospital Central"
  *               address:
- *                 type: object
- *                 properties:
- *                   logradouro:
- *                     type: string
- *                   numero:
- *                     type: string
- *                   bairro:
- *                     type: string
- *                   cep:
- *                     type: string
- *                   estado:
- *                     type: string
- *               longitude:
- *                 type: number
- *                 format: float
+ *                 type: string
+ *                 description: Endereço completo
+ *                 example: "Rua Exemplo, 123, Centro, São Paulo - SP"
  *               latitude:
  *                 type: number
  *                 format: float
+ *                 example: -23.55052
+ *               longitude:
+ *                 type: number
+ *                 format: float
+ *                 example: -46.633308
+ *               rating:
+ *                 type: number
+ *                 format: float
+ *                 description: Avaliação (opcional)
+ *                 example: 4.5
+ *               phoneNumber:
+ *                 type: string
+ *                 description: Número de telefone com DDD (opcional)
+ *                 example: "(11) 1234-5678"
+ *               website:
+ *                 type: string
+ *                 description: URL do site oficial (opcional)
+ *                 example: "https://www.hospitalcentral.com"
+ *               types:
+ *                 type: array
+ *                 description: Lista de categorias
+ *                 items:
+ *                   type: string
+ *                 example: ["hospital", "health"]
+ *               addedAt:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Data e hora em que foi adicionado (ISODate)
+ *                 example: "2024-06-29T18:00:00.000Z"
  *     responses:
  *       201:
  *         description: Unidade favorita cadastrada com sucesso

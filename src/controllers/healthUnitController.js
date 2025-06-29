@@ -4,35 +4,46 @@ class HealthUnitController {
     // Cadastrar unidade favorita
     static async addFavorite(req, res) {
         try {
-            const { 
-                userId, 
-                name, 
-                address: { logradouro, numero, bairro, cep, estado }, 
-                longitude, 
-                latitude 
+            const {
+                id,
+                name,
+                address,
+                latitude,
+                longitude,
+                rating,        // opcional
+                phoneNumber,   // opcional
+                website,       // opcional
+                types,
+                addedAt,
+                userId
             } = req.body;
 
-            // Validação básica
-            if (!userId || !name || !logradouro || !numero || !bairro || !cep || !estado || !longitude || !latitude) {
-                return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
+            // Validação dos campos obrigatórios
+            if (!id || !name || !address || latitude === undefined || longitude === undefined || !types || !addedAt || !userId) {
+                return res.status(400).json({ error: 'Campos obrigatórios ausentes.' });
             }
 
             const favoriteData = {
-                userId,
+                id,
                 name,
-                address: { logradouro, numero, bairro, cep, estado },
-                longitude,
+                address,
                 latitude,
-                createdAt: new Date()
+                longitude,
+                rating: rating ?? null,
+                phoneNumber: phoneNumber ?? null,
+                website: website ?? null,
+                types,
+                addedAt,
+                userId
             };
 
             const docRef = await db.collection('favorites').add(favoriteData);
-            
-            res.status(201).json({ 
-                id: docRef.id, 
-                ...favoriteData 
+
+            res.status(201).json({
+                firebaseId: docRef.id, // ID gerado pelo Firestore
+                ...favoriteData
             });
-            
+
         } catch (error) {
             console.error('Erro ao salvar unidade favorita:', error);
             res.status(500).json({ error: 'Erro ao salvar unidade favorita' });
