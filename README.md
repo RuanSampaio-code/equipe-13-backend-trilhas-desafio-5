@@ -169,6 +169,100 @@ Se precisar de exemplos de resposta ou detalhes de autenticação, só pedir!- *
   [http://localhost:3000/api-docs](http://localhost:3000/api-docs)  
   ou  
   [https://equipe-13-backend-trilhas-desafio-5.onrender.com/api-docs](https://equipe-13-backend-trilhas-desafio-5.onrender.com/api-docs)
+## 2. Criação e Estruturação do Banco de Dados
 
+### 2.1 Estrutura das Coleções e Documentos (Firestore)
+
+### 📁 Coleção: `users`
+
+- **Descrição:** Armazena os dados dos usuários cadastrados.
+- **Exemplo de documento:**
+    
+    ```json
+    json
+    CopyEdit
+    {
+      "name": "João Silva",
+      "email": "joao@email.com",
+      "password": "<senha_hash>",
+      "createdAt": "2024-06-29T18:00:00.000Z"
+    }
+    
+    ```
+    
+- **Campos:**
+    - `name`: Nome do usuário (string)
+    - `email`: Email do usuário (string, único)
+    - `password`: Senha criptografada (string)
+    - `createdAt`: Data de criação (timestamp)
+
+---
+
+### 📁 Coleção: `favorites`
+
+- **Descrição:** Armazena unidades de saúde favoritas por usuário.
+- **Exemplo de documento:**
+    
+    ```json
+    json
+    CopyEdit
+    {
+      "userId": "id_do_usuario",
+      "name": "Unidade de Saúde X",
+      "address": {
+        "logradouro": "Rua Exemplo",
+        "numero": "123",
+        "bairro": "Centro",
+        "cep": "12345-678",
+        "estado": "SP"
+      },
+      "longitude": -46.123456,
+      "latitude": -23.123456,
+      "createdAt": "2024-06-29T18:00:00.000Z"
+    }
+    
+    ```
+    
+- **Campos:**
+    - `userId`: ID do usuário (string)
+    - `name`: Nome da unidade (string)
+    - `address`: Objeto com logradouro, número, bairro, cep e estado
+    - `longitude` e `latitude`: Coordenadas geográficas (number)
+    - `createdAt`: Timestamp de criação
+
+---
+
+### 🔍 Observações Importantes
+
+- Firestore é **NoSQL**, portanto:
+    - A estrutura é criada dinamicamente com os documentos inseridos.
+    - Não há necessidade de scripts `.sql`.
+- Índices compostos podem ser exigidos para filtros por múltiplos campos (o console do Firebase indicará isso).
+- O campo `userId` funciona como referência entre as coleções.
+
+---
+
+### 🧭 Resumo Visual
+
+```
+yaml
+CopyEdit
+users (coleção)
+ └── {userId} (documento)
+      ├── name: string
+      ├── email: string
+      ├── password: string (hash)
+      └── createdAt: timestamp
+
+favorites (coleção)
+ └── {favoriteId} (documento)
+      ├── userId: string
+      ├── name: string
+      ├── address: objeto
+      ├── longitude: number
+      ├── latitude: number
+      └── createdAt: timestamp
+
+```
 ---
 
