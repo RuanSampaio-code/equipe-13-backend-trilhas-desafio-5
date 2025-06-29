@@ -1,6 +1,6 @@
 import express from 'express';
 import userRoutes from './userRoutes.js';
-
+import healthUnitRoutes from './healthUnitRoutes.js';
 
 const routes = (app) => {
     
@@ -10,6 +10,8 @@ const routes = (app) => {
         express.json(),
         userRoutes
     )
+
+    app.use(healthUnitRoutes);
 }
 
 export default routes;
