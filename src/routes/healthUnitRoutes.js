@@ -80,6 +80,31 @@ router.post("/favorites", validateFavoriteUnit, HealthUnitController.addFavorite
  *         description: Lista de unidades favoritas
  */
 router.get("/favorites", HealthUnitController.getFavorites);
+
+
+/**
+ * @swagger
+ * /favorites/{id}:
+ *   delete:
+ *     summary: Remove uma unidade de saúde dos favoritos
+ *     tags: [Unidades Favoritas]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID da unidade favorita a ser removida
+ *     responses:
+ *       200:
+ *         description: Unidade favorita removida com sucesso
+ *       404:
+ *         description: Unidade favorita não encontrada
+ */
+router.delete("/favorites/:id", HealthUnitController.deleteFavorite);
+
+
+
 /**
  * @swagger
  * /health-units:
@@ -91,5 +116,7 @@ router.get("/favorites", HealthUnitController.getFavorites);
  *         description: Lista de unidades de saúde
  */
 router.get("/health-units", HealthUnitController.getHealthUnits);
+
+
 
 export default router;

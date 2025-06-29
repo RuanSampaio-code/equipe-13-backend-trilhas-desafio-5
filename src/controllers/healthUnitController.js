@@ -78,6 +78,17 @@ class HealthUnitController {
             res.status(500).json({ error: 'Erro ao buscar unidades de saúde' });
         }
     }
+
+    //delete
+    static async deleteFavorite(req, res) {
+        try {
+            const id = req.params.id;
+            await db.collection('favorites').doc(id).delete();
+            res.status(200).json({ message: "Unidade favorita removida com sucesso" });
+        } catch (error) {
+            res.status(500).json({ message: `Erro ao remover unidade favorita: ${error.message}` });
+        }
+}
 }
 
 export default HealthUnitController;

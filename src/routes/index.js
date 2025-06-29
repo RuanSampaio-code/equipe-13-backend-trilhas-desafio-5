@@ -6,10 +6,7 @@ const routes = (app) => {
     
     app.route("/").get((req, res) => res.status(200).send("Curso de node.js"));
 
-    app.use(
-        express.json(),
-        userRoutes
-    )
+    app.use(userRoutes);
 
     app.use(healthUnitRoutes);
 }
