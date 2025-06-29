@@ -1,6 +1,5 @@
 # equipe-13-backend-trilhas-desafio-5
 
-Claro! Aqui está um guia completo para seu projeto:
 
 ---
 
@@ -173,4 +172,3 @@ Se precisar de exemplos de resposta ou detalhes de autenticação, só pedir!- *
 
 ---
 
-Se precisar de exemplos de resposta ou detalhes de autenticação, só pedir!
