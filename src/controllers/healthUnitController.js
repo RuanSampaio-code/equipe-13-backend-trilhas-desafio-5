@@ -94,12 +94,19 @@ class HealthUnitController {
     static async deleteFavorite(req, res) {
         try {
             const id = req.params.id;
-            await db.collection('favorites').doc(id).delete();
+            const docRef = db.collection('favorites').doc(id);
+            const doc = await docRef.get();
+
+            if (!doc.exists) {
+                return res.status(404).json({ message: "Unidade favorita não encontrada" });
+            }
+
+            await docRef.delete();
             res.status(200).json({ message: "Unidade favorita removida com sucesso" });
         } catch (error) {
             res.status(500).json({ message: `Erro ao remover unidade favorita: ${error.message}` });
         }
-}
+    }
 }
 
 export default HealthUnitController;
