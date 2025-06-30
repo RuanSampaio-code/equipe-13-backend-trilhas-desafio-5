@@ -50,7 +50,7 @@ class HealthUnitController {
         }
     }
 
-    // Listar todas as unidades favoritas
+    // Listar todas as unidades favoritas por usuario
     static async getFavorites(req, res) {
         try {
             const userId = req.query.userId; // Filtro por usuário
@@ -63,7 +63,7 @@ class HealthUnitController {
 
             const snapshot = await query.get();
             const favorites = snapshot.docs.map(doc => ({
-                id: doc.id,
+                firebaseId: doc.id, // ID gerado pelo Firestore
                 ...doc.data()
             }));
 
