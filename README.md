@@ -184,8 +184,7 @@ Se precisar de exemplos de resposta ou detalhes de autenticação, só pedir!- *
 ### **Swagger**
 
 - Acesse a documentação interativa em:http://localhost:3000/api-docs
-ouhttps://equipe-13-backend-trilhas-desafio-5.onrender.com/api-docs
+ou
+https://equipe-13-backend-trilhas-desafio-5.onrender.com/api-docs
 
 ---
-
-Se precisar de exemplos de resposta ou detalhes de autenticação, só pedir!
